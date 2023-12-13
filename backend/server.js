@@ -1,17 +1,17 @@
 require('dotenv').config();
 const bodyParser = require('body-parser'); // Import body-parser
 const express = require('express');
-// const cors = require('cors');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const entryRoutes = require('./routes/entry');
 
 const app = express();
 
-// app.use(cors({
-//   origin: 'http://localhost:5000',
-//   methods: 'GET, POST',
-// }));
-app.use(bodyParser.json()); // Use body-parser for JSON parsing
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: 'GET, POST'
+}));
+app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

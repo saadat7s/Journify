@@ -7,10 +7,7 @@ const entryRoutes = require('./routes/entry');
 
 const app = express();
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-  methods: 'GET, POST'
-}));
+app.use(cors({origin: ["http://localhost:3000","https://yelpcamps-client.vercel.app"],methods: ["POST", "GET", "PUT", "DELETE"] ,credentials: true}))
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

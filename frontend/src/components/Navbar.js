@@ -4,7 +4,7 @@ export default function Navbar() {
   return (
     <section className='container-fluid p-0'>
       <nav className="navbar navbar-expand-md bg-dark border-bottom border-body" data-bs-theme="dark">
-  <article className="container">
+    <article className="container">
     <a className="navbar-brand" href="#">Journify</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>

@@ -1,43 +1,26 @@
-import React from 'react'
-
-const today = new Date();
-const day = today.getDate();
-const data = [
-{
-    title: 'My title',
-    content: 'my Content',
-    date: day
-
-},
-{
-    title: 'My title',
-    content: 'my Content',
-    date: day
-
-},
-{
-    title: 'My title',
-    content: 'my Content',
-    date: day
-
-}
-
-]
+import React, { useEffect, useState } from 'react'
 
 export default function Body() {
-  return (
+    const [data, setData] = useState([]);
+    async function fetchData(){
+       await fetch("http://localhost:5000/api/entries").then(response => response.json()).then(item => setData(item))    }
+    useEffect(()=>
+{
+    fetchData();
+}, [])
+    return (
     <section className='container'>
         <div className='row my-2'>
             {data.map(item=>{
                 return(
-                    <div className='col'>
+                <div className='col' key = {item._id}>
                     <div className='card'>
                         <img src='' alt=''/>
                         <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>
                             <p class="card-text">{item.content}</p>
-                            <a href="#" class="btn me-2 btn-primary">Update</a>
-                            <a href="#" class="btn me-2 btn-danger">Delete</a>
+                            <a href="/update" class="btn me-2 btn-primary">Update</a>
+                            <a href="/delete" class="btn me-2 btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>

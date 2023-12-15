@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // Get all journal entries
 const getJournalEntries = async (req, res) => {
   try {
-    const entries = await JournalEntry.find({}).sort({ date: -1 });
+    const entries = await JournalEntry.find({});
     res.status(200).json(entries);
   } catch (error) {
     res.status(500).json({ error: error.message });

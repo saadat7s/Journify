@@ -1,27 +1,27 @@
-const express = require('express');
-const {
-    getJournalEntries,
-    getJournalEntry,
-    createJournalEntry,
-    updateJournalEntry,
-    deleteJournalEntry,
-} = require('../controller/entryController');
+    const express = require('express');
+    const {
+        getJournalEntries,
+        getJournalEntry,
+        createJournalEntry,
+        updateJournalEntry,
+        deleteJournalEntry,
+    } = require('../controller/entryController');
 
-const router = express.Router();
+    const router = express.Router();
 
-// Get all journal entries
-router.get('/', getJournalEntries);
+    // Get all journal entries
+    router.get('/', getJournalEntries);
 
-// Get a single journal entry
-router.get('/:id', getJournalEntry);
+    // Get a single journal entry
+    router.get('/:id', getJournalEntry);
 
-// Create a new journal entry
-router.post('/', createJournalEntry);
+    // Create a new journal entry
+    router.post('/', createJournalEntry);
 
-// Delete a journal entry
-router.delete('/:id', deleteJournalEntry);
+    // Delete a journal entry
+    router.delete('/:id', deleteJournalEntry);
 
-// Update a journal entry
-router.patch('/:id', updateJournalEntry);
+    // Update a journal entry
+    router.patch('/:id', updateJournalEntry);
 
-module.exports = router;
+    module.exports = router;

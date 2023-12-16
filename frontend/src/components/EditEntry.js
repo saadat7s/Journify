@@ -20,7 +20,7 @@ const EditEntry = () => {
           setContent(data.content);
         } else {
           console.error('Error fetching entry:', data.error);
-          // Handle the error as needed (e.g., show an error message to the user)
+          // Handle the error as needed
         }
       } catch (error) {
         console.error('Fetch error:', error.message);
@@ -40,28 +40,27 @@ const EditEntry = () => {
         },
         body: JSON.stringify({ title, content }),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         // Entry successfully updated
         console.log('Entry updated successfully:', data);
-  
+
         // Show a success notification
         toast.success('Changes have been saved successfully');
-  
+
         // Redirect to the main page
         navigate('/');
       } else {
         console.error('Error updating entry:', data.error);
-        // Handle the error as needed (e.g., show an error message to the user)
+        // Handle the error as needed
       }
     } catch (error) {
       console.error('Update error:', error.message);
       // Handle the error as needed
     }
   };
-  
 
   return (
     <div className="container">
@@ -90,7 +89,8 @@ const EditEntry = () => {
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </div>
-        <button type="button" className="btn btn-primary" onClick={handleUpdate}>
+
+        <button type="button" className="btn btn-primary mt-3" onClick={handleUpdate}>
           Update
         </button>
       </form>

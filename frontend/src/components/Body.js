@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Body.css'; // Import the CSS file for styling
 
 export default function Body() {
   const [data, setData] = useState([]);
@@ -18,31 +19,33 @@ export default function Body() {
     fetchData();
   }, []);
 
-  async function deleteHandler(id){
+  async function deleteHandler(id) {
     await fetch(`http://localhost:5000/api/entries/${id}`, {
-        method : 'DELETE'
-    }); 
-    window.location.reload();
-    
+      method: 'DELETE',
+    });
+    fetchData(); // Refetch data after deletion
   }
 
   return (
-    <section className='container'>
-      <div className='row my-2'>
-        {data.map(item => (
-          <div className='col' key={item._id}>
-            <div className='card'>
-              <img src='' alt='' />
+    <section className="container">
+      <div className="row row-cols-1 row-cols-md-4 my-2">
+        {data.map((item) => (
+          <div className="col mb-4" key={item._id}>
+            <div className="card">
               <div className="card-body">
-                <h5 className="card-title">{item.title}</h5>
-                <p className="card-text">{item.content}</p>
-                <Link to={`/edit/${item._id}`} className="btn me-2 btn-primary">
+                <h3 className="card-title">{item.title}</h3>
+                <p className="card-content">{item.content.substring(0, 100)}...</p>
+                <div className="card-buttons">
+                  <Link to={`/edit/${item._id}`} className="btn btn-primary">
                     Update
-                </Link>
-                
-                <button className="btn me-2 btn-danger" onClick={(e)=>deleteHandler(item._id)}>
-                  Delete
-                </button>
+                  </Link>
+                  <button
+                    className="btn btn-danger ms-2"
+                    onClick={(e) => deleteHandler(item._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>

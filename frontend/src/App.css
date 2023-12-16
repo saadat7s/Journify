@@ -1,38 +1,97 @@
-.App {
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+/* Card Styles */
+.card {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 20px; /* Add some margin between cards */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease; /* Add smooth transition effect */
+}
+
+.card:hover {
+  transform: scale(1.05); /* Enlarge the card on hover */
+}
+
+
+/* Card Title Styles */
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Card Content Styles */
+.card-content {
+  font-size: 16px;
+  color: #555555;
+}
+
+
+
+
+/* Navbar Styles */
+.navbar {
+  background-color: #333333;
+  padding: 10px 0;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 20px 0;
   text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.footer p {
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Add this to your app.css */
+
+/* Styles for the expanded sidebar */
+.offcanvas.expanded {
+  transform: translateX(0);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Styles for the collapsed sidebar */
+.offcanvas.collapsed {
+  transform: translateX(-100%);
 }
 
-.App-link {
-  color: #61dafb;
+/* Styles to position the toggle button */
+.btn-primary.d-md-none {
+  position: fixed;
+  top: 10px; /* Adjust the top position as needed */
+  left: 10px; /* Adjust the left position as needed */
+  z-index: 1000; /* Ensure it's above other elements */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Styles for the main content to accommodate the expanded sidebar */
+.content-wrapper.expanded {
+  margin-left: 200px; /* Adjust the margin as needed */
+  transition: margin-left 0.3s ease; /* Add a smooth transition effect for margin changes */
+}
+
+/* Styles for the main content when the sidebar is collapsed */
+.content-wrapper.collapsed {
+  margin-left: 50px; /* Adjust the margin as needed */
+  transition: margin-left 0.3s ease; /* Add a smooth transition effect for margin changes */
 }

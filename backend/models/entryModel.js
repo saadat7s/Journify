@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const today = new Date();
 
 const journalEntrySchema = new Schema({
     title: {
@@ -14,8 +13,14 @@ const journalEntrySchema = new Schema({
     },
     date: {
         type: Date,
-        default: today
-    }
+        default: Date.now
+    },
+    // Add user reference
+    // user: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User', 
+    //     required: true
+    // }
 }, { timestamps: true });
 
 const JournalEntry = mongoose.model('JournalEntry', journalEntrySchema);

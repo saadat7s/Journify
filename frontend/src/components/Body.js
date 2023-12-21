@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Body.css'; // Import the CSS file for styling
+import './Body.css';
+import Sidebar from './Sidebar';
+import JournalCard from './JournalCard';
 
-export default function Body() {
+const Body = () => {
   const [data, setData] = useState([]);
 
   async function fetchData() {
@@ -27,30 +28,28 @@ export default function Body() {
   }
 
   return (
-    <section className="container">
-      <div className="row row-cols-1 row-cols-md-4 my-2">
-        {data.map((item) => (
-          <div className="col mb-4" key={item._id}>
-            <div className="card">
-              <div className="card-body">
-                <h3 className="card-title">{item.title}</h3>
-                <p className="card-content">{item.content.substring(0, 100)}...</p>
-                <div className="card-buttons">
-                  <Link to={`/edit/${item._id}`} className="btn btn-primary">
-                    Update
-                  </Link>
-                  <button
-                    className="btn btn-danger ms-2"
-                    onClick={(e) => deleteHandler(item._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
+    <section className="body">
+      <div className="row">
+        <div className='col sidebarMain'>
+          <Sidebar />
+        </div>
+
+        <div className='col me-4'>
+          <div className="row my-2">
+            {data.map((item) => (
+              <JournalCard
+                key={item._id}
+                id={item._id}
+                title={item.title}
+                content={item.content}
+                onDelete={deleteHandler}
+              />
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
-}
+};
+
+export default Body;

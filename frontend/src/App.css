@@ -1,3 +1,5 @@
+/* App.css */
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
@@ -19,7 +21,6 @@ body {
   transform: scale(1.05); /* Enlarge the card on hover */
 }
 
-
 /* Card Title Styles */
 .card-title {
   font-size: 20px;
@@ -32,9 +33,6 @@ body {
   font-size: 16px;
   color: #555555;
 }
-
-
-
 
 /* Navbar Styles */
 .navbar {
@@ -64,19 +62,17 @@ body {
   margin: 0;
 }
 
-/* Add this to your app.css */
-
-/* Styles for the expanded sidebar */
+/* Expanded Sidebar Styles */
 .offcanvas.expanded {
   transform: translateX(0);
 }
 
-/* Styles for the collapsed sidebar */
+/* Collapsed Sidebar Styles */
 .offcanvas.collapsed {
   transform: translateX(-100%);
 }
 
-/* Styles to position the toggle button */
+/* Toggle Button Position */
 .btn-primary.d-md-none {
   position: fixed;
   top: 10px; /* Adjust the top position as needed */
@@ -84,13 +80,13 @@ body {
   z-index: 1000; /* Ensure it's above other elements */
 }
 
-/* Styles for the main content to accommodate the expanded sidebar */
+/* Main Content Styles for Expanded Sidebar */
 .content-wrapper.expanded {
   margin-left: 200px; /* Adjust the margin as needed */
   transition: margin-left 0.3s ease; /* Add a smooth transition effect for margin changes */
 }
 
-/* Styles for the main content when the sidebar is collapsed */
+/* Main Content Styles for Collapsed Sidebar */
 .content-wrapper.collapsed {
   margin-left: 50px; /* Adjust the margin as needed */
   transition: margin-left 0.3s ease; /* Add a smooth transition effect for margin changes */

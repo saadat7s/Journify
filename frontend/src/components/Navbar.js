@@ -30,23 +30,18 @@ export default function Navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/">
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" onClick={handleOpenModal}>
+                <li className="nav-item m-0">
+                <NavLink className="nav-link m-1" onClick={handleOpenModal}>
                   Add
                 </NavLink>
               </li>
             </ul>
           </div>
-        </div>
-        <div className="navbar-weather" style={{ fontSize: '18px', fontWeight: 'bold' }}>
+          <div className="navbar-weather" style={{ fontSize: '18px', fontWeight: 'bold' }}>
             {/* WeatherDisplay component is rendered directly */}
             <WeatherDisplay />
           </div>
+        </div>
       </nav>
 
       {/* Modal */}

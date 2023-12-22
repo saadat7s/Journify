@@ -1,11 +1,30 @@
 /* App.css */
-
+html{
+  height: 100%;
+}
 body {
+  box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
+  height: 100%;
   background-color: #f7f7f7;
 }
+
+
+/* Navbar Styles */
+.navbar {
+  background-color: #333333;
+  padding: 10px 0;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
 
 /* Card Styles */
 .card {
@@ -32,19 +51,6 @@ body {
 .card-content {
   font-size: 16px;
   color: #555555;
-}
-
-/* Navbar Styles */
-.navbar {
-  background-color: #333333;
-  padding: 10px 0;
-}
-
-.navbar a {
-  color: #ffffff;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
 }
 
 /* Footer Styles */
@@ -80,21 +86,6 @@ body {
   z-index: 1000; /* Ensure it's above other elements */
 }
 
-/* Main Content Styles for Expanded Sidebar */
-.content-wrapper.expanded {
-  margin-left: 200px; /* Adjust the margin as needed */
-  transition: margin-left 0.3s ease; /* Add a smooth transition effect for margin changes */
-}
-
-/* Main Content Styles for Collapsed Sidebar */
-.content-wrapper.collapsed {
-  margin-left: 50px; /* Adjust the margin as needed */
-  transition: margin-left 0.3s ease; /* Add a smooth transition effect for margin changes */
-}
-/* Add this to your existing CSS stylesheet */
-
-/* Add this to your existing CSS stylesheet */
-
 .navbar-weather {
   display: flex;
   align-items: center;
@@ -103,6 +94,7 @@ body {
 .weather-details {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .weather-icon {

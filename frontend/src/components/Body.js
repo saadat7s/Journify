@@ -29,7 +29,7 @@ const Body = () => {
 
   return (
     <section className="body">
-      <div className="row">
+      <div className="elementsRow row m-0">
         <div className='col sidebarMain'>
           <Sidebar />
         </div>

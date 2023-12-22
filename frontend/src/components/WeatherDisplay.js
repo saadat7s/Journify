@@ -29,14 +29,14 @@ const WeatherDisplay = () => {
   }, []);
 
   return (
-    <div className="weather-details">
+    <div className="weather-details border rounded p-2">
       {weatherData && (
         <div>
           {/* Display the weather icon */}
           <FontAwesomeIcon icon={faSun} className="weather-icon" />
 
           {/* Display the temperature */}
-          <span className="temperature">{weatherData.main.temp}°C</span>
+          <span className="temperature">{parseInt(weatherData.main.temp)}°C</span>
         </div>
       )}
     </div>

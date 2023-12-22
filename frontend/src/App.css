@@ -91,3 +91,29 @@ body {
   margin-left: 50px; /* Adjust the margin as needed */
   transition: margin-left 0.3s ease; /* Add a smooth transition effect for margin changes */
 }
+/* Add this to your existing CSS stylesheet */
+
+/* Add this to your existing CSS stylesheet */
+
+.navbar-weather {
+  display: flex;
+  align-items: center;
+}
+
+.weather-details {
+  display: flex;
+  align-items: center;
+}
+
+.weather-icon {
+  font-size: 1.5rem;
+  margin-right: 5px;
+  color: #fff;
+}
+
+.temperature {
+  color: #fff;
+  margin-right: 10px;
+}
+
+

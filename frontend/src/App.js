@@ -11,6 +11,8 @@ import AddEntryModal from './components/AddEntryModal';
 
 
 
+
+
 function App() {
   return (
     <Router>

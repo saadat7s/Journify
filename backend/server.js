@@ -5,7 +5,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const entryRoutes = require('./routes/entry');
 const registrationRoutes = require('./routes/registrationRoute'); 
-const authRoutes = require('./routes/auth')
 
 
 
@@ -29,7 +28,7 @@ app.use((req, res, next) => {
 app.options('/api/register', cors());
 app.options('/api/entries/:id', cors());
 app.options('/api/entries', cors());
-app.options('/api/auth', cors());
+// app.options('/api/auth', cors());
 
 
 
@@ -41,7 +40,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
     // Routes for each operation
     app.use('/api/register', registrationRoutes);
     app.use('/api/entries', entryRoutes);
-    app.use('/api/auth', authRoutes);
+    // app.use('/api/auth', authRoutes);
 
 
     // Start the server

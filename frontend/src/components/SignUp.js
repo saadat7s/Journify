@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
@@ -39,9 +39,10 @@ export default function SignUp() {
 
       if (response.ok) {
         console.log('Registration successful');
-        // You can redirect or perform other actions upon successful registration
+        // Optionally, you can redirect or perform other actions upon successful registration
       } else {
         console.error('Registration failed');
+        // Handle registration failure, e.g., display an error message to the user
       }
     } catch (error) {
       console.error('Error during registration:', error.message);

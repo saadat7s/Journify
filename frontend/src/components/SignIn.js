@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,6 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -37,6 +39,7 @@ export default function SignIn() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // Include credentials (cookies) with the request
         body: JSON.stringify(formData),
       });
 
@@ -49,8 +52,8 @@ export default function SignIn() {
 
         console.log('Login successful');
 
-        // Redirect or perform other actions after successful login
-        // Example: window.location.href = '/dashboard';
+        // Redirect to the home page after successful login
+        navigate('/');
       } else {
         console.error('Login failed');
       }

@@ -1,107 +1,105 @@
 const JournalEntry = require('../models/entryModel');
 const mongoose = require('mongoose');
 
-// Get all journal entries
-const getJournalEntries = async (req, res) => {
-  try {
-    const entries = await JournalEntry.find({});
-    res.status(200).json(entries);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+const entryController = {
+  getJournalEntries: async (req, res) => {
+    try {
+      // Check if the user is authenticated
+      if (!req.session.user) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
 
-// Get a single journal entry
-const getJournalEntry = async (req, res) => {
-  const { id } = req.params;
+      // Get the user ID from the session
+      const userId = req.session.user._id;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: 'No such journal entry' });
-  }
+      // Fetch all entries associated with the user
+      const entries = await JournalEntry.find({ user: userId });
 
-  try {
-    const entry = await JournalEntry.findById(id);
+      res.status(200).json(entries);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 
-    if (!entry) {
-      return res.status(404).json({ error: 'No such journal entry exists' });
+  getJournalEntry: async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: 'No such journal entry' });
     }
 
-    res.status(200).json(entry);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+    try {
+      const userId = req.session.user._id;
 
-// Create a new journal entry
-const createJournalEntry = async (req, res) => {
-  console.log(req.body);
-  const { title, content, date } = req.body;
+      const entry = await JournalEntry.findOne({ _id: id, user: userId });
 
-  try {
-      const entry = await JournalEntry.create({ title, content, date });
+      if (!entry) {
+        return res.status(404).json({ error: 'No such journal entry exists' });
+      }
+
+      res.status(200).json(entry);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  createJournalEntry: async (req, res) => {
+    const { title, content, date } = req.body;
+
+    try {
+      const userId = req.session.user._id;
+
+      const entry = await JournalEntry.create({ title, content, date, user: userId });
+
       res.status(201).json(entry);
-  } catch (error) {
+    } catch (error) {
       res.status(400).json({ error: error.message });
-  }
-};
+    }
+  },
 
+  updateJournalEntry: async (req, res) => {
+    const { id } = req.params;
 
-// Update a journal entry
-const updateJournalEntry = async (req, res) => {
-  const { id } = req.params;
-  console.log('Entry ID:', id);
-  console.log('Request Body:', req.body); // Log the request body
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    console.log('Invalid ID:', id);
-    return res.status(404).json({ error: 'No such journal entry' });
-  }
-
-  try {
-    const entry = await JournalEntry.findByIdAndUpdate(id, req.body, { new: true });
-
-    if (!entry) {
-      console.log('Entry not found:', id);
-      return res.status(404).json({ error: 'No such journal entry exists' });
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: 'No such journal entry' });
     }
 
-    console.log('Updated Entry:', entry);
+    try {
+      const userId = req.session.user._id;
 
-    res.status(200).json(entry);
-  } catch (error) {
-    console.error('Update Error:', error);
-    res.status(500).json({ error: error.message });
-  }
-};
+      const entry = await JournalEntry.findOneAndUpdate({ _id: id, user: userId }, req.body, { new: true });
 
+      if (!entry) {
+        return res.status(404).json({ error: 'No such journal entry exists' });
+      }
 
+      res.status(200).json(entry);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 
+  deleteJournalEntry: async (req, res) => {
+    const { id } = req.params;
 
-// Delete a journal entry
-const deleteJournalEntry = async (req, res) => {
-  const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: 'No such journal entry' });
-  }
-
-  try {
-    const entry = await JournalEntry.findOneAndDelete({ _id: id });
-
-    if (!entry) {
-      return res.status(404).json({ error: 'No such journal entry exists' });
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: 'No such journal entry' });
     }
 
-    res.status(200).json(entry);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+    try {
+      const userId = req.session.user._id;
+
+      const entry = await JournalEntry.findOneAndDelete({ _id: id, user: userId });
+
+      if (!entry) {
+        return res.status(404).json({ error: 'No such journal entry exists' });
+      }
+
+      res.status(200).json(entry);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
 };
 
-module.exports = {
-  getJournalEntries,
-  getJournalEntry,
-  createJournalEntry,
-  updateJournalEntry,
-  deleteJournalEntry,
-};
+module.exports = entryController;

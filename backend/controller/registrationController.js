@@ -1,4 +1,7 @@
+// registrationController.js
+
 const User = require('../models/userModel');
+const JournalEntry = require('../models/entryModel');
 
 const registrationController = {
   registerUser: async (req, res) => {
@@ -15,6 +18,14 @@ const registrationController = {
       const newUser = new User({ firstName, lastName, email, password });
       await newUser.save();
 
+      // Create a default journal entry for the new user
+      const defaultEntry = new JournalEntry({
+        title: 'Welcome Entry',
+        content: 'This is your first journal entry. Welcome!',
+        user: newUser._id, // Assign the user ID to the entry
+      });
+      await defaultEntry.save();
+
       res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
       console.error('Error during user registration:', error);
@@ -23,4 +34,24 @@ const registrationController = {
   },
 };
 
-module.exports = registrationController;
+const logoutUser = (req, res) => {
+  try {
+    // Clear the session on logout
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Error during user logout:', err);
+        res.status(500).json({ message: 'Internal Server Error' });
+      } else {
+        res.status(200).json({ message: 'Logout successful' });
+      }
+    });
+  } catch (error) {
+    console.error('Error during user logout:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+module.exports = {
+  registrationController,
+  logoutUser,
+};
